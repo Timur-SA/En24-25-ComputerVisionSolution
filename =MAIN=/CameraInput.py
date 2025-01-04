@@ -6,7 +6,7 @@ class CaptureImage:
     
     def __init__(self):
         self.cam = cv.VideoCapture(1)
-        self.cam.release() #???
+        #self.cam.release() #???
 
     def GetImage(self):
         isCaptured, self.srcImg = self.cam.read()
