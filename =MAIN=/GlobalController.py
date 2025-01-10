@@ -9,7 +9,7 @@ from MovementControl import MovementController
 
 nc = NetControl()
 ci = CaptureImage()
-ip = ImageProcessor()
+ip = ImageProcessor(colLine, colRobot, colLed)
 mc = MovementController()
 
 
