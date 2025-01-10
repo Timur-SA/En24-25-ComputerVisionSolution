@@ -11,11 +11,10 @@ class CaptureImage:
     def GetImage(self):
         isCaptured, self.srcImg = self.cam.read()
         
-        if(not isCaptured):
+        if(not isCaptured or self.srcImg is None):
             self.CamError()
 
         self.mainImg = cv.cvtColor(self.srcImg, cv.COLOR_RGB2HSV)
-        #Обработка изображения
         return self.mainImg
 
 if __name__ == "__main__":

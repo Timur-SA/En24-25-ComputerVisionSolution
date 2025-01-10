@@ -31,9 +31,9 @@ class NetControl:
         requests.get(f"http://{self.ip}/s")
         print(f"Стоп")
 
-    def Command(self):
-        requests.get(f"http://{self.ip}/s")
-        print(f"Стоп")
+    def SendCommand(self, command="s"):
+        requests.get(f"http://{self.ip}/{command}")
+        print(f"Робот: {command}")
 
 def Timer(timerTime, deltaTime):
         while(timerTime>0):

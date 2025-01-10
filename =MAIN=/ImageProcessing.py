@@ -2,19 +2,31 @@ import cv2 as cv
 import numpy as np
 
 class ImageProcessor:
+    def __init__(self, line, robot, led):
+        self.lineL, self.lineU = line
+        self.robotL, self.robotU = robot
+        self.ledL, self.ledU = led
+
     def findLines(self, img):
-        hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-        lower_blue = np.array([90, 70, 30])
-        upper_blue = np.array([140, 255, 255])
-        mask = cv.inRange(hsv, lower_blue, upper_blue)
+        mask = cv.inRange(img, self.lineL, self.lineU)
+
         edges = cv.Canny(mask, 50, 200)
         lines = cv.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=20, minLineLength=10, maxLineGap=5)
         
         return lines
+    
     def findRobot(self, img):
-        hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+        robotC = self.findCenter(img, self.robotL, self.robotU)
+        robotF = self.findCenter(img, self.ledL, self.ledU)
 
-        return robotC, robotF 
+        return robotC, robotF
+
+    def findCenter(self, img, low, up):
+        mask = cv.inRange(img, low, up)
+
+        center = [ np.average(i) for i in np.where(mask >= 255) ]
+
+        return center
 
 # class HoughTransform:
 #     def hough_lines(self, edges):
