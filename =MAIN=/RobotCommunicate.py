@@ -3,7 +3,7 @@ import time
 import os
 
 class NetControl:
-    ip = "192.168.4.1"
+    ip = "0.0.0.0" #AP: 192.168.4.1
     def __init__(self, ip="192.168.4.1"):
         self.ip = ip
 
