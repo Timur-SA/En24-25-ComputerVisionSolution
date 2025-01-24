@@ -6,16 +6,15 @@ class CaptureImage:
     
     def __init__(self):
         self.cam = cv.VideoCapture(1)
-        self.cam.release() #???
+        #self.cam.release() #???
 
     def GetImage(self):
         isCaptured, self.srcImg = self.cam.read()
         
-        if(not isCaptured):
+        if(not isCaptured or self.srcImg is None):
             self.CamError()
 
         self.mainImg = cv.cvtColor(self.srcImg, cv.COLOR_RGB2HSV)
-        #Обработка изображения
         return self.mainImg
 
 if __name__ == "__main__":

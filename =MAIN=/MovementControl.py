@@ -1,27 +1,20 @@
-class Robot():
-    class Robot1():
-        def __init__(self):
-            pass
-    def __init__(self):
-        self.robotRot = 0
-        self.targetRot = 0
-        self.rotSpeed = 1
-    
-    def RotateToTarget(self, target):
-        self.targetRot = target
+import math
 
-        deltaRot = self.targetRot - self.robotRot
-        if(deltaRot > 0):
-            if(deltaRot < 180):
-                pass
-                #L
-            else:
-                pass
-                #R
+class MovementController:
+    def __init__(self, accuracy=0.1):
+        self.accuracy = accuracy
+
+    def MoveToTarget(self, robotCenter, robotFor, target):
+        robotDir = math.atan2(robotFor[0]-robotCenter[0], robotFor[1]-robotCenter[1])
+        targDir = math.atan2(target[0]-robotCenter[0], target[1]-robotCenter[1])
+
+        delta = robotDir - targDir
+
+        #!!!
+
+        if(delta+self.accuracy > 0):
+            return "l"
+        elif(delta-self.accuracy < 0):
+            return "r"
         else:
-            if(deltaRot < -180):
-                pass
-                #L
-            else:
-                pass
-                #R
+            return "f"

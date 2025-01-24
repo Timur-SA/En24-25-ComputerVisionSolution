@@ -3,7 +3,7 @@ import time
 import os
 
 class NetControl:
-    ip = "192.168.4.1"
+    ip = "0.0.0.0" #AP: 192.168.4.1
     def __init__(self, ip="192.168.4.1"):
         self.ip = ip
 
@@ -30,6 +30,10 @@ class NetControl:
     def MoveStop(self):
         requests.get(f"http://{self.ip}/s")
         print(f"Стоп")
+
+    def SendCommand(self, command="s"):
+        requests.get(f"http://{self.ip}/{command}")
+        print(f"Робот: {command}")
 
 def Timer(timerTime, deltaTime):
         while(timerTime>0):
