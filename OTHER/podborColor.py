@@ -1,6 +1,6 @@
 import cv2
 
-cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture(1)
 
 def findC():
     #вместо названия цветов, названия предметов
@@ -10,13 +10,13 @@ def findC():
 
     cv2.namedWindow('result')
 
-    cv2.createTrackbar('minh', 'result', 0, 255, nothing)
-    cv2.createTrackbar('mins', 'result', 0, 255, nothing)
-    cv2.createTrackbar('minv', 'result', 0, 255, nothing)
+    cv2.createTrackbar('H_min', 'result', 0, 255, nothing)
+    cv2.createTrackbar('S_min', 'result', 0, 255, nothing)
+    cv2.createTrackbar('V_min', 'result', 0, 255, nothing)
 
-    cv2.createTrackbar('maxh', 'result', 0, 255, nothing)
-    cv2.createTrackbar('maxs', 'result', 0, 255, nothing)
-    cv2.createTrackbar('maxv', 'result', 0, 255, nothing)
+    cv2.createTrackbar('H_max', 'result', 0, 255, nothing)
+    cv2.createTrackbar('S_max', 'result', 0, 255, nothing)
+    cv2.createTrackbar('V_max', 'result', 0, 255, nothing)
     #создание ползунков
 
     while(True):
@@ -24,13 +24,13 @@ def findC():
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         cv2.imshow('hsv', hsv)
 
-        minh = cv2.getTrackbarPos('minh', 'result')
-        mins = cv2.getTrackbarPos('mins', 'result')
-        minv = cv2.getTrackbarPos('minv', 'result')
+        minh = cv2.getTrackbarPos('H_min', 'result')
+        mins = cv2.getTrackbarPos('S_min', 'result')
+        minv = cv2.getTrackbarPos('V_min', 'result')
 
-        maxh = cv2.getTrackbarPos('maxh', 'result')
-        maxs = cv2.getTrackbarPos('maxs', 'result')
-        maxv = cv2.getTrackbarPos('maxv', 'result')
+        maxh = cv2.getTrackbarPos('H_max', 'result')
+        maxs = cv2.getTrackbarPos('S_max', 'result')
+        maxv = cv2.getTrackbarPos('V_max', 'result')
         #сбор инфы с ползунков
 
         mask = cv2.inRange(hsv, (minh, mins, minv), (maxh, maxs, maxv))
