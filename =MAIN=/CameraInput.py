@@ -14,7 +14,7 @@ class CaptureImage:
         if(not isCaptured or self.srcImg is None):
             self.CamError()
 
-        self.mainImg = cv.cvtColor(self.srcImg, cv.COLOR_RGB2HSV)
+        self.mainImg = cv.cvtColor(self.srcImg, cv.COLOR_BGR2HSV)
         return self.mainImg
 
 if __name__ == "__main__":

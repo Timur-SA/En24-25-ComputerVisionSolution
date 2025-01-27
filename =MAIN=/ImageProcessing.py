@@ -8,11 +8,19 @@ class ImageProcessor:
         self.ledL, self.ledU = led
 
     def findLines(self, img):
+        print(self.lineL)
+        print(self.lineU)
         mask = cv.inRange(img, self.lineL, self.lineU)
+        cv.imshow("MASK", mask)
+        cv.waitKey(0)
+        cv.imshow("IMG", img)
+        cv.waitKey(0)
 
         edges = cv.Canny(mask, 50, 200)
+        print(edges)
         lines = cv.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=20, minLineLength=10, maxLineGap=5)
-        
+        print(lines)
+
         return lines
     
     def findRobot(self, img):
