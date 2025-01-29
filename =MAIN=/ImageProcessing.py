@@ -7,6 +7,13 @@ class ImageProcessor:
         self.robotL, self.robotU = robot
         self.ledL, self.ledU = led
 
+
+    def rotateImage(self, img, rounds):
+        for i in range(rounds):
+            img = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
+        return img
+    
+
     def findLines(self, img):
         print(self.lineL)
         print(self.lineU)
@@ -20,6 +27,14 @@ class ImageProcessor:
         print(edges)
         lines = cv.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=20, minLineLength=10, maxLineGap=5)
         print(lines)
+
+        for i in range(0, len(lines)):
+            l = lines[i][0]
+            cv.line(img, (l[0], l[1]), (l[2], l[3]), (255, 10, 150),
+                    thickness=1,
+                    lineType=cv.LINE_AA)
+        cv.imshow("LINES", img)
+        cv.waitKey(0)
 
         return lines
     

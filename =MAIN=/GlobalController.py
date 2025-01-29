@@ -14,6 +14,7 @@ mc = MovementController()
 
 
 image = ci.GetImage()
+image = ip.rotateImage(image, int(input("Количество поворотов: ")))
 lines = ip.findLines(image)
 robotPos, robotDir = ip.findRobot(image)
 for line in lines:
